@@ -1,0 +1,415 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.wrap { padding: 2rem 0; max-width: 660px; font-family: var(--font-sans); }
+
+.section { margin-bottom: 2.5rem; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 1rem; }
+
+.tab-row { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab { font-size: 13px; padding: 6px 16px; border-radius: 999px; border: 0.5px solid var(--color-border-secondary); cursor: pointer; background: var(--color-background-primary); color: var(--color-text-secondary); transition: all 0.15s; }
+.tab.active { background: var(--color-text-primary); color: var(--color-background-primary); border-color: transparent; }
+
+.stack-view { display: none; }
+.stack-view.active { display: block; }
+
+.layer { margin-bottom: 10px; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+.layer-header { padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.layer-icon { font-size: 16px; color: var(--color-text-secondary); width: 20px; text-align: center; }
+.layer-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); flex: 1; }
+.free-badge { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 999px; background: #E1F5EE; color: #085041; white-space: nowrap; }
+.pack-badge { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 999px; background: #E6F1FB; color: #0C447C; white-space: nowrap; }
+@media (prefers-color-scheme: dark) {
+  .free-badge { background: #085041; color: #9FE1CB; }
+  .pack-badge { background: #0C447C; color: #B5D4F4; }
+}
+.layer-body { padding: 12px 16px; }
+.tool-row { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.tool-row:last-child { border-bottom: none; }
+.tool-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); min-width: 130px; }
+.tool-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; flex: 1; }
+.tool-limit { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+
+.warning-card { background: #FAEEDA; border: 0.5px solid #EF9F27; border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 10px; }
+.warning-card .wtitle { font-size: 13px; font-weight: 500; color: #633806; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.warning-card .wdesc { font-size: 13px; color: #854F0B; line-height: 1.6; }
+.warning-card .wsolution { font-size: 13px; color: #633806; margin-top: 6px; font-weight: 500; }
+@media (prefers-color-scheme: dark) {
+  .warning-card { background: #412402; border-color: #BA7517; }
+  .warning-card .wtitle { color: #FAC775; }
+  .warning-card .wdesc { color: #EF9F27; }
+  .warning-card .wsolution { color: #FAC775; }
+}
+
+.ok-card { background: #EAF3DE; border: 0.5px solid #639922; border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 10px; }
+.ok-card .otitle { font-size: 13px; font-weight: 500; color: #27500A; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.ok-card .odesc { font-size: 13px; color: #3B6D11; line-height: 1.6; }
+@media (prefers-color-scheme: dark) {
+  .ok-card { background: #173404; border-color: #3B6D11; }
+  .ok-card .otitle { color: #C0DD97; }
+  .ok-card .odesc { color: #97C459; }
+}
+
+.arch-flow { display: flex; flex-direction: column; gap: 8px; }
+.arch-step { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; font-size: 13px; color: var(--color-text-secondary); display: flex; align-items: center; gap: 10px; line-height: 1.5; }
+.arch-arrow { text-align: center; color: var(--color-text-tertiary); font-size: 12px; }
+.arch-tag { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 999px; white-space: nowrap; background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); color: var(--color-text-secondary); }
+</style>
+
+<div class="wrap">
+  <h2 style="sr-only">Recall App — Full Tech Stack Plan</h2>
+
+  <div class="tab-row">
+    <button class="tab active" onclick="show('mobile')">📱 Mobile Stack</button>
+    <button class="tab" onclick="show('web')">🌐 Web Stack</button>
+    <button class="tab" onclick="show('ai')">🤖 AI Layer</button>
+    <button class="tab" onclick="show('risks')">⚠️ Feasibility</button>
+  </div>
+
+  <!-- MOBILE STACK -->
+  <div id="mobile" class="stack-view active">
+    <div class="section-label">Mobile App Stack — 100% Free</div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-device-mobile layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Framework</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Expo + React Native</div>
+            <div class="tool-desc">Build once, deploy to iOS and Android. Expo handles share sheet integration (the "Share via" menu) natively. Best choice for a student solo project — no need for separate native codebases.</div>
+            <div class="tool-limit">Free forever. Open source.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-database layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Backend + Database</div>
+        <span class="free-badge">Free Tier</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Supabase</div>
+            <div class="tool-desc">Postgres database, auth, file storage, edge functions, and realtime — all in one. Free tier gives you 500MB database, 1GB storage, 2 projects, and 50,000 monthly active users. Perfect for MVP and well into public launch.</div>
+            <div class="tool-limit">Free tier: 500MB DB, 50k MAU, 1GB storage. No credit card needed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-shield-lock layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Authentication</div>
+        <span class="free-badge">Included in Supabase</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Supabase Auth</div>
+            <div class="tool-desc">Email/password and OAuth (Google, GitHub) built in. No extra setup. You get sessions, JWT tokens, and row-level security on your database out of the box.</div>
+            <div class="tool-limit">Free with Supabase.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-bell layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Push Notifications</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Expo Push Notifications</div>
+            <div class="tool-desc">Expo has a built-in push notification service that works on both iOS and Android. You call their API from Supabase Edge Functions to send reminders. No third-party service needed.</div>
+            <div class="tool-limit">Free. 100% handled by Expo's infrastructure.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-share layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Share Sheet (Core Feature)</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">expo-share-intent</div>
+            <div class="tool-desc">A library that lets your app appear in iOS/Android "Share via" menus. When the user shares a link from TikTok, YouTube, Safari, etc., your app catches the URL. This is the entire capture flow on mobile.</div>
+            <div class="tool-limit">Free. Open source package.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-server layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Background Processing (AI Jobs)</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Supabase Edge Functions</div>
+            <div class="tool-desc">When a link comes in, the mobile app saves it to Supabase, then triggers an Edge Function. That function fetches the URL content, calls Gemini API for analysis, writes the summary back to the database. Serverless — no server to manage.</div>
+            <div class="tool-limit">Free tier: 500k invocations/month. More than enough.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-tool layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Dev Tools</div>
+        <span class="pack-badge">GitHub Student Pack</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div class="tool-name">GitHub Copilot Pro</div>
+          <div class="tool-desc">Free with your student pack. AI code completion inside VS Code — speeds up development significantly.</div>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">GitHub Actions</div>
+          <div class="tool-desc">Free CI/CD for automated builds and testing. Run tests on every push automatically.</div>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">Sentry</div>
+          <div class="tool-desc">Error monitoring — free via Student Pack. Know when your app crashes and exactly why.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEB STACK -->
+  <div id="web" class="stack-view">
+    <div class="section-label">Web App + Browser Extension Stack — 100% Free</div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-layout layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Web Frontend</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Next.js (App Router)</div>
+            <div class="tool-desc">Same React skills from Expo carry over. Server-side rendering, API routes, and file-based routing. You can share component logic between mobile (React Native) and web (React) via a monorepo setup.</div>
+            <div class="tool-limit">Free forever. Open source.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-rocket layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Web Hosting + Deployment</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Vercel</div>
+            <div class="tool-desc">Deploy Next.js with one command. Free hobby tier includes unlimited deployments, preview URLs on every pull request, and a CDN. Custom domain supported on free tier.</div>
+            <div class="tool-limit">Free hobby tier. Plenty for personal + early public launch.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-puzzle layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Browser Extension</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Manifest V3 Extension</div>
+            <div class="tool-desc">Built with plain HTML + JavaScript. No framework needed. A small popup with a "Save to Recall" button that reads the current tab URL and sends it to your Supabase backend. Works on Chrome, Edge, Brave, and Firefox.</div>
+            <div class="tool-limit">Free to publish. Chrome Web Store = $5 one-time (or use Edge Add-ons store for free).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-globe layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Domain</div>
+        <span class="pack-badge">GitHub Student Pack</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Free .tech or .dev domain</div>
+            <div class="tool-desc">Student pack includes 1 free .TECH domain for 1 year via get.tech, and GitHub Pages supports custom domains. recall.tech or userecall.dev would both be excellent. After 1 year you can migrate to a cheap renewal or a free subdomain.</div>
+            <div class="tool-limit">Free for 1 year via Student Pack.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-brand-figma layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Design</div>
+        <span class="pack-badge">GitHub Student Pack</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div class="tool-name">Figma</div>
+          <div class="tool-desc">Free via Student Pack. Design your UI, make wireframes, and prototype before building.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI LAYER -->
+  <div id="ai" class="stack-view">
+    <div class="section-label">AI Layer — 100% Free</div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-sparkles layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Primary AI — Summarization & Categorization</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Gemini 2.0 Flash (Google AI Studio)</div>
+            <div class="tool-desc">The best permanently-free AI API available right now. 1,500 requests/day, 1M token context window, multimodal (can read text, images, and YouTube video content). No credit card needed. This is your primary AI for summarizing articles, LinkedIn posts, tweets, and blogs.</div>
+            <div class="tool-limit">1,500 req/day, 15 RPM, 1M token context — permanently free.</div>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Gemini for YouTube</div>
+            <div class="tool-desc">Gemini natively understands YouTube URLs. Pass a YouTube link directly to the Gemini API and ask it to summarize the video — it uses the transcript internally. This solves the long-video problem completely without any extra integration.</div>
+            <div class="tool-limit">Same free tier. No extra setup needed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-search layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Semantic Search (Find by Meaning)</div>
+        <span class="free-badge">Free via Supabase</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">pgvector + Supabase Vector Store</div>
+            <div class="tool-desc">Supabase has built-in vector search via pgvector extension. When a link is saved, generate an embedding using Gemini's embedding model (also free) and store it. When the user searches, convert query to embedding and do similarity search. This powers "find that video about cold email" even without exact keywords.</div>
+            <div class="tool-limit">Free within Supabase free tier. Gemini embeddings also free.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-clock layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Scheduled Jobs (Reminders & Digest)</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div>
+            <div class="tool-name">Supabase pg_cron + Edge Functions</div>
+            <div class="tool-desc">pg_cron is a Postgres extension that runs scheduled SQL. You can set up: a daily job that checks for unactioned items older than X days and sends push notifications, a Sunday job that compiles the weekly digest and sends it. All inside Supabase — no extra service needed.</div>
+            <div class="tool-limit">Free within Supabase.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-header">
+        <i class="ti ti-robot layer-icon" aria-hidden="true"></i>
+        <div class="layer-title">Backup AI (overflow days)</div>
+        <span class="free-badge">Free</span>
+      </div>
+      <div class="layer-body">
+        <div class="tool-row">
+          <div class="tool-name">Groq (Llama 3.3 70B)</div>
+          <div class="tool-desc">If you hit Gemini's daily limit, fall back to Groq. Extremely fast, 14,400 req/day free, OpenAI-compatible API. Same prompts, different provider. Build a simple fallback in your Edge Function.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEASIBILITY -->
+  <div id="risks" class="stack-view">
+    <div class="section-label">Technical Feasibility — Honest Assessment</div>
+
+    <div class="ok-card">
+      <div class="otitle"><i class="ti ti-check" aria-hidden="true"></i> Fully feasible — no issues</div>
+      <div class="odesc">Link capture (share sheet + browser extension), AI summarization, categorization, database storage, auth, push notifications, web dashboard, semantic search — all of this is well-documented, free, and achievable solo as a student project. The stack is battle-tested.</div>
+    </div>
+
+    <div class="warning-card">
+      <div class="wtitle"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Risk 1 — Paywalled content</div>
+      <div class="wdesc">Some links won't be fetchable. Medium paywalled articles, LinkedIn posts requiring login, private Instagram posts — the app can't read them server-side because it has no session cookies for those platforms.</div>
+      <div class="wsolution">Fix: Show a clear message — "We couldn't read this content. Add a note to help categorize it." User adds a short note. AI uses title + note + domain name to categorize. Not perfect but practical.</div>
+    </div>
+
+    <div class="warning-card">
+      <div class="wtitle"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Risk 2 — TikTok / Instagram content</div>
+      <div class="wdesc">TikTok and Instagram don't expose video transcripts publicly. The app can extract the video title, username, and caption from the page — but not a full transcript like YouTube.</div>
+      <div class="wsolution">Fix: Same approach as long videos — title + caption + user note. The AI summarizes what it can see. For Phase 2, explore unofficial transcript APIs (e.g. TikTok's caption track if available in the video embed).</div>
+    </div>
+
+    <div class="warning-card">
+      <div class="wtitle"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Risk 3 — Rate limits at scale</div>
+      <div class="wdesc">Gemini's free tier is 1,500 req/day. For personal use that's plenty. But when you launch publicly with 100+ users each saving 10+ links/day, you'll hit the ceiling fast.</div>
+      <div class="wsolution">Fix: Queue system. Don't process links instantly — add them to a queue, process in batches. For personal MVP, no issue. For public launch, this is when you'd add a very small paid Gemini tier (or monetize the app and cover costs). Groq as fallback buys time.</div>
+    </div>
+
+    <div class="warning-card">
+      <div class="wtitle"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Risk 4 — iOS App Store publishing</div>
+      <div class="wdesc">Publishing to the Apple App Store costs $99/year. There's no way around this for native iOS distribution.</div>
+      <div class="wsolution">Fix for now: Use Expo Go for personal testing (free). For Android public launch, Google Play is just $25 one-time. iOS stays internal (TestFlight is free) until you're ready to pay the $99 — or monetize the app first to cover it.</div>
+    </div>
+
+    <div class="ok-card">
+      <div class="otitle"><i class="ti ti-check" aria-hidden="true"></i> Chrome Web Store — $5 one-time</div>
+      <div class="odesc">Publishing the browser extension to Chrome Web Store costs a one-time $5 developer fee. Edge Add-ons store is completely free as an alternative. For zero cost, launch the extension on Edge/Brave first, then pay the $5 for Chrome when you're ready.</div>
+    </div>
+
+    <div class="ok-card">
+      <div class="otitle"><i class="ti ti-check" aria-hidden="true"></i> Supabase free tier is genuinely enough</div>
+      <div class="odesc">500MB database and 50k monthly active users on the free tier. For personal use and early public launch (first few hundred users), you won't need to upgrade. Supabase also has a pause feature — inactive projects stay free indefinitely.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.stack-view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>

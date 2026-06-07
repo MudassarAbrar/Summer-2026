@@ -1,0 +1,122 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.wrap { padding: 1.5rem 0; font-family: var(--font-sans); }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.table-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+.table-head { padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 8px; }
+.table-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.table-note { font-size: 11px; color: var(--color-text-tertiary); margin-left: auto; }
+.field-row { display: flex; align-items: baseline; gap: 8px; padding: 5px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.field-row:last-child { border-bottom: none; }
+.field-name { font-size: 12px; font-weight: 500; color: var(--color-text-primary); min-width: 110px; font-family: var(--font-mono); }
+.field-type { font-size: 11px; color: var(--color-text-tertiary); min-width: 60px; }
+.field-note { font-size: 11px; color: var(--color-text-secondary); }
+.pk { font-size: 10px; font-weight: 500; padding: 1px 5px; border-radius: 3px; background: #FAEEDA; color: #633806; margin-left: auto; white-space: nowrap; }
+.fk { font-size: 10px; font-weight: 500; padding: 1px 5px; border-radius: 3px; background: #E6F1FB; color: #0C447C; margin-left: auto; white-space: nowrap; }
+@media (prefers-color-scheme: dark) {
+  .pk { background: #412402; color: #FAC775; }
+  .fk { background: #0C447C; color: #B5D4F4; }
+}
+.dot-blue { width: 8px; height: 8px; border-radius: 50%; background: #378ADD; flex-shrink: 0; }
+.dot-teal { width: 8px; height: 8px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; }
+.dot-purple { width: 8px; height: 8px; border-radius: 50%; background: #7F77DD; flex-shrink: 0; }
+.dot-amber { width: 8px; height: 8px; border-radius: 50%; background: #BA7517; flex-shrink: 0; }
+.dot-gray { width: 8px; height: 8px; border-radius: 50%; background: #888780; flex-shrink: 0; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 10px; margin-top: 20px; }
+.rel-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; color: var(--color-text-secondary); }
+.rel-row:last-child { border-bottom: none; }
+.rel-from { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-primary); min-width: 120px; }
+.rel-arrow { color: var(--color-text-tertiary); }
+.rel-to { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-primary); min-width: 120px; }
+</style>
+
+<div class="wrap">
+<h2 class="sr-only">Recall database schema — all tables and their fields</h2>
+
+<div class="section-label">Core tables</div>
+<div class="grid">
+
+  <div class="table-card">
+    <div class="table-head"><span class="dot-blue"></span><span class="table-name">users</span><span class="table-note">Supabase auth</span></div>
+    <div class="field-row"><span class="field-name">id</span><span class="field-type">uuid</span><span class="field-note">auto by Supabase</span><span class="pk">PK</span></div>
+    <div class="field-row"><span class="field-name">email</span><span class="field-type">text</span><span class="field-note">unique</span></div>
+    <div class="field-row"><span class="field-name">display_name</span><span class="field-type">text</span></div>
+    <div class="field-row"><span class="field-name">created_at</span><span class="field-type">timestamptz</span></div>
+    <div class="field-row"><span class="field-name">streak_count</span><span class="field-type">int</span><span class="field-note">actioned items streak</span></div>
+    <div class="field-row"><span class="field-name">notif_enabled</span><span class="field-type">bool</span></div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-head"><span class="dot-teal"></span><span class="table-name">links</span><span class="table-note">every saved item</span></div>
+    <div class="field-row"><span class="field-name">id</span><span class="field-type">uuid</span><span class="pk">PK</span></div>
+    <div class="field-row"><span class="field-name">user_id</span><span class="field-type">uuid</span><span class="fk">FK → users</span></div>
+    <div class="field-row"><span class="field-name">url</span><span class="field-type">text</span><span class="field-note">original URL</span></div>
+    <div class="field-row"><span class="field-name">title</span><span class="field-type">text</span><span class="field-note">page/video title</span></div>
+    <div class="field-row"><span class="field-name">user_note</span><span class="field-type">text</span><span class="field-note">user's optional note</span></div>
+    <div class="field-row"><span class="field-name">platform</span><span class="field-type">text</span><span class="field-note">youtube, tiktok, etc.</span></div>
+    <div class="field-row"><span class="field-name">status</span><span class="field-type">enum</span><span class="field-note">pending / ready / done</span></div>
+    <div class="field-row"><span class="field-name">is_actioned</span><span class="field-type">bool</span></div>
+    <div class="field-row"><span class="field-name">actioned_note</span><span class="field-type">text</span><span class="field-note">what user did</span></div>
+    <div class="field-row"><span class="field-name">saved_at</span><span class="field-type">timestamptz</span></div>
+    <div class="field-row"><span class="field-name">actioned_at</span><span class="field-type">timestamptz</span></div>
+    <div class="field-row"><span class="field-name">reminder_count</span><span class="field-type">int</span><span class="field-note">times reminded</span></div>
+    <div class="field-row"><span class="field-name">next_reminder_at</span><span class="field-type">timestamptz</span></div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-head"><span class="dot-purple"></span><span class="table-name">ai_summaries</span><span class="table-note">one per link</span></div>
+    <div class="field-row"><span class="field-name">id</span><span class="field-type">uuid</span><span class="pk">PK</span></div>
+    <div class="field-row"><span class="field-name">link_id</span><span class="field-type">uuid</span><span class="fk">FK → links</span></div>
+    <div class="field-row"><span class="field-name">summary</span><span class="field-type">text</span><span class="field-note">2-4 sentence summary</span></div>
+    <div class="field-row"><span class="field-name">key_points</span><span class="field-type">jsonb</span><span class="field-note">array of strings</span></div>
+    <div class="field-row"><span class="field-name">resources</span><span class="field-type">jsonb</span><span class="field-note">tools/apps mentioned</span></div>
+    <div class="field-row"><span class="field-name">freshness_score</span><span class="field-type">int</span><span class="field-note">1-10, AI estimated</span></div>
+    <div class="field-row"><span class="field-name">is_time_sensitive</span><span class="field-type">bool</span></div>
+    <div class="field-row"><span class="field-name">embedding</span><span class="field-type">vector(768)</span><span class="field-note">pgvector, for search</span></div>
+    <div class="field-row"><span class="field-name">created_at</span><span class="field-type">timestamptz</span></div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-head"><span class="dot-amber"></span><span class="table-name">categories</span><span class="table-note">user-defined + defaults</span></div>
+    <div class="field-row"><span class="field-name">id</span><span class="field-type">uuid</span><span class="pk">PK</span></div>
+    <div class="field-row"><span class="field-name">user_id</span><span class="field-type">uuid</span><span class="fk">FK → users</span></div>
+    <div class="field-row"><span class="field-name">name</span><span class="field-type">text</span><span class="field-note">e.g. "Tools & Apps"</span></div>
+    <div class="field-row"><span class="field-name">color</span><span class="field-type">text</span><span class="field-note">hex color for UI</span></div>
+    <div class="field-row"><span class="field-name">is_default</span><span class="field-type">bool</span><span class="field-note">system or user-created</span></div>
+  </div>
+
+</div>
+
+<div class="section-label">Join + notification tables</div>
+<div class="grid">
+
+  <div class="table-card">
+    <div class="table-head"><span class="dot-gray"></span><span class="table-name">link_categories</span><span class="table-note">many-to-many</span></div>
+    <div class="field-row"><span class="field-name">link_id</span><span class="field-type">uuid</span><span class="fk">FK → links</span></div>
+    <div class="field-row"><span class="field-name">category_id</span><span class="field-type">uuid</span><span class="fk">FK → categories</span></div>
+    <div class="field-row"><span class="field-name">assigned_by</span><span class="field-type">enum</span><span class="field-note">ai / user</span></div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-head"><span class="dot-gray"></span><span class="table-name">notifications</span><span class="table-note">reminder log</span></div>
+    <div class="field-row"><span class="field-name">id</span><span class="field-type">uuid</span><span class="pk">PK</span></div>
+    <div class="field-row"><span class="field-name">user_id</span><span class="field-type">uuid</span><span class="fk">FK → users</span></div>
+    <div class="field-row"><span class="field-name">link_id</span><span class="field-type">uuid</span><span class="fk">FK → links</span></div>
+    <div class="field-row"><span class="field-name">type</span><span class="field-type">enum</span><span class="field-note">reminder / urgent / digest</span></div>
+    <div class="field-row"><span class="field-name">sent_at</span><span class="field-type">timestamptz</span></div>
+    <div class="field-row"><span class="field-name">opened</span><span class="field-type">bool</span></div>
+  </div>
+
+</div>
+
+<div class="section-label">Key relationships</div>
+<div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 4px 14px;">
+  <div class="rel-row"><span class="rel-from">users</span><span class="rel-arrow">1 →</span><span class="rel-to">links</span><span style="font-size:12px;color:var(--color-text-secondary)">one user owns many links</span></div>
+  <div class="rel-row"><span class="rel-from">links</span><span class="rel-arrow">1 →</span><span class="rel-to">ai_summaries</span><span style="font-size:12px;color:var(--color-text-secondary)">one summary per link</span></div>
+  <div class="rel-row"><span class="rel-from">links</span><span class="rel-arrow">M ↔</span><span class="rel-to">categories</span><span style="font-size:12px;color:var(--color-text-secondary)">via link_categories join</span></div>
+  <div class="rel-row"><span class="rel-from">links</span><span class="rel-arrow">1 →</span><span class="rel-to">notifications</span><span style="font-size:12px;color:var(--color-text-secondary)">many reminders per link</span></div>
+  <div class="rel-row"><span class="rel-from">users</span><span class="rel-arrow">1 →</span><span class="rel-to">categories</span><span style="font-size:12px;color:var(--color-text-secondary)">each user owns their categories</span></div>
+</div>
+
+</div>

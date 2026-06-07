@@ -1,0 +1,1 @@
+- [Pika MCP Auth Setup](C:\Users\Mudassir\.claude\projects\D--Vibe-Coding-VIBE-CODED-PROJECTS\Summer Break Ideas And Projects\memory\pika-mcp-auth.md) — authentication and usage instructions for pika-mcp

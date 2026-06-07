@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "pika-mcp": {
+      "command": "node",
+      "args": ["-e", "require('https').get('https://mcp.pika.me/api/mcp', (res) => { let data = ''; res.on('data', chunk => data += chunk); res.on('end', () => console.log(data)); }).on('error', console.error)"],
+      "env": {}
+    }
+  }
+}

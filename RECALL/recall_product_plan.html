@@ -1,0 +1,209 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .wrap { padding: 2rem 0; max-width: 660px; }
+
+  .hero { margin-bottom: 2.5rem; }
+  .app-name { font-size: 36px; font-weight: 500; color: var(--color-text-primary); letter-spacing: -1px; }
+  .app-name span { color: #3B8BD4; }
+  .tagline { font-size: 16px; color: var(--color-text-secondary); margin-top: 6px; line-height: 1.6; }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .pill { font-size: 12px; padding: 4px 12px; border-radius: 999px; font-weight: 500; }
+  .pill-blue { background: #E6F1FB; color: #0C447C; }
+  .pill-teal { background: #E1F5EE; color: #085041; }
+  .pill-amber { background: #FAEEDA; color: #633806; }
+  .pill-coral { background: #FAECE7; color: #712B13; }
+  @media (prefers-color-scheme: dark) {
+    .pill-blue { background: #0C447C; color: #B5D4F4; }
+    .pill-teal { background: #085041; color: #9FE1CB; }
+    .pill-amber { background: #633806; color: #FAC775; }
+    .pill-coral { background: #712B13; color: #F5C4B3; }
+  }
+
+  .section { margin-bottom: 2.5rem; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 1rem; }
+
+  .problem-box { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; border: 0.5px solid var(--color-border-tertiary); }
+  .problem-box p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.7; }
+
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) { .feature-grid { grid-template-columns: 1fr; } }
+
+  .feature-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.1rem 1.25rem; }
+  .feature-icon { font-size: 20px; margin-bottom: 10px; color: var(--color-text-secondary); }
+  .feature-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 5px; }
+  .feature-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+
+  .core-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 10px; display: flex; gap: 16px; align-items: flex-start; }
+  .step-num { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); min-width: 20px; padding-top: 2px; }
+  .core-content .title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .core-content .desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+
+  .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+  .cat-pill { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 12px; font-size: 13px; color: var(--color-text-secondary); display: flex; align-items: center; gap: 8px; }
+  .cat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+  .phase-row { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
+  .phase-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 999px; white-space: nowrap; margin-top: 2px; }
+  .phase-content { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+  .phase-content strong { color: var(--color-text-primary); font-weight: 500; }
+
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 2rem 0; }
+
+  .insight-box { border-left: 2px solid #3B8BD4; padding: 0.75rem 1.25rem; background: var(--color-background-secondary); border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; margin-bottom: 10px; }
+  .insight-box p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+  .insight-box strong { color: var(--color-text-primary); font-weight: 500; }
+</style>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="app-name">Re<span>call</span></div>
+    <div class="tagline">Save it once. Never forget it. Always act on it.</div>
+    <div class="pill-row">
+      <span class="pill pill-blue">Mobile + Browser Extension</span>
+      <span class="pill pill-teal">AI-Powered</span>
+      <span class="pill pill-amber">Personal → Public Launch</span>
+      <span class="pill pill-coral">All Platforms</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The Problem</div>
+    <div class="problem-box">
+      <p>You save dozens of videos, articles, posts, and links every week across TikTok, YouTube, LinkedIn, Instagram, and the web. They sit in watch-later lists, bookmarks, and starred folders for months — until the opportunity expires, the trend dies, or you simply forget. All that saving was wasted effort.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Core Loop</div>
+    <div class="core-card">
+      <div class="step-num">01</div>
+      <div class="core-content">
+        <div class="title">Capture from anywhere</div>
+        <div class="desc">Share any link via the mobile share sheet or browser extension. Works with TikTok, Instagram, YouTube, LinkedIn, Twitter/X, blogs, and any web URL. For long YouTube videos, you add a quick note — the AI uses the title + your note to categorize without needing to watch the whole thing.</div>
+      </div>
+    </div>
+    <div class="core-card">
+      <div class="step-num">02</div>
+      <div class="core-content">
+        <div class="title">AI reads and understands it</div>
+        <div class="desc">The app visits the link, fetches the content, and generates a structured summary card — what the content is about, key insights, and most importantly: any tools, apps, resources, or opportunities mentioned inside it. For YouTube, it uses Gemini's Ask Gemini feature to get a full video summary.</div>
+      </div>
+    </div>
+    <div class="core-card">
+      <div class="step-num">03</div>
+      <div class="core-content">
+        <div class="title">Auto-categorize with your own system</div>
+        <div class="desc">AI assigns a category automatically. You can override anytime or add custom categories. Every item lives in a searchable, filterable library — not just a flat list.</div>
+      </div>
+    </div>
+    <div class="core-card">
+      <div class="step-num">04</div>
+      <div class="core-content">
+        <div class="title">Smart reminders until you act</div>
+        <div class="desc">Recall keeps nudging you. Time-sensitive items (trending tools, limited opportunities, expiring offers) get flagged immediately. Everything else gets periodically surfaced — "You saved this AI tool 3 weeks ago and haven't used it yet." — until you mark it actioned.</div>
+      </div>
+    </div>
+    <div class="core-card">
+      <div class="step-num">05</div>
+      <div class="core-content">
+        <div class="title">Mark done — it never disappears</div>
+        <div class="desc">When you've acted on something, you mark it done. It moves to your archive — permanently. Your library is your memory, not a task list. You can always come back to a resource months later even after marking it done.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Default Categories (AI auto-assigns, user can customize)</div>
+    <div class="category-grid">
+      <div class="cat-pill"><span class="cat-dot" style="background:#378ADD"></span>Tools & Apps</div>
+      <div class="cat-pill"><span class="cat-dot" style="background:#1D9E75"></span>Courses</div>
+      <div class="cat-pill"><span class="cat-dot" style="background:#EF9F27"></span>Opportunities</div>
+      <div class="cat-pill"><span class="cat-dot" style="background:#D4537E"></span>Inspiration</div>
+      <div class="cat-pill"><span class="cat-dot" style="background:#7F77DD"></span>Resources</div>
+      <div class="cat-pill"><span class="cat-dot" style="background:#D85A30"></span>News & Trends</div>
+      <div class="cat-pill"><span class="cat-dot" style="background:#639922"></span>Locations</div>
+      <div class="cat-pill"><span class="cat-dot" style="background:#888780"></span>Reference</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Enhanced Features (beyond the original idea)</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-package" aria-hidden="true"></i></div>
+        <div class="feature-title">Resource extraction</div>
+        <div class="feature-desc">If a video or article mentions 5 tools, your summary card lists all 5. You see the tools before you even watch the video.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-clock-exclamation" aria-hidden="true"></i></div>
+        <div class="feature-title">Freshness scoring</div>
+        <div class="feature-desc">Each item gets a freshness tag. Tech news from 8 months ago gets flagged as likely outdated. Time-sensitive items get urgency labels automatically.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-link" aria-hidden="true"></i></div>
+        <div class="feature-title">Cross-link detection</div>
+        <div class="feature-desc">If you save 3 things about the same topic, Recall groups them. "You have 4 saved items about n8n automation — want to review them together?"</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-brain" aria-hidden="true"></i></div>
+        <div class="feature-title">Weekly digest</div>
+        <div class="feature-desc">Every Sunday, a digest of your unactioned items sorted by urgency, category, and time saved — so you can do a quick weekly review in one session.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-search" aria-hidden="true"></i></div>
+        <div class="feature-title">Semantic search</div>
+        <div class="feature-desc">Search by meaning, not just title. "Find that video about cold email" surfaces it even if you don't remember the exact words in the title.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-notes" aria-hidden="true"></i></div>
+        <div class="feature-title">Action notes</div>
+        <div class="feature-desc">When you mark something done, you optionally write what you did. Builds a log of actions taken — useful for reflecting on what you actually executed on.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-trophy" aria-hidden="true"></i></div>
+        <div class="feature-title">Action streak</div>
+        <div class="feature-desc">Gamified motivation: tracks how many items you've actioned vs saved. Keeps you honest about your follow-through ratio over time.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+        <div class="feature-title">Spaces (for public launch)</div>
+        <div class="feature-desc">When you go public: shared workspaces. A team or community can share a Recall space — curate a group library of useful resources together.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Build Phases</div>
+    <div class="phase-row">
+      <span class="pill pill-blue phase-badge">Phase 1</span>
+      <div class="phase-content"><strong>Personal MVP.</strong> Browser extension + mobile share sheet. Link ingestion, AI summary + categorization, basic reminder system, archive on action. Just for you.</div>
+    </div>
+    <div class="phase-row">
+      <span class="pill pill-teal phase-badge">Phase 2</span>
+      <div class="phase-content"><strong>Smart layer.</strong> Resource extraction, freshness scoring, cross-linking, semantic search, weekly digest, Gemini integration for YouTube.</div>
+    </div>
+    <div class="phase-row">
+      <span class="pill pill-amber phase-badge">Phase 3</span>
+      <div class="phase-content"><strong>Public launch.</strong> Auth, user accounts, onboarding, Spaces for shared libraries, action streaks, public-facing polish.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Key Design Decisions</div>
+    <div class="insight-box"><p><strong>Never delete.</strong> Marking done moves to archive, never erases. Your library is permanent memory.</p></div>
+    <div class="insight-box"><p><strong>Reminders are persistent, not one-shot.</strong> Unlike every other app, Recall keeps nudging until you act. It's designed to fight the save-and-forget habit at its root.</p></div>
+    <div class="insight-box"><p><strong>Long videos use title + user note + Gemini.</strong> No need to process full video content — this keeps it fast and practical for YouTube.</p></div>
+    <div class="insight-box"><p><strong>Categories are AI-suggested, human-confirmed.</strong> You stay in control. AI is a starting point, not a dictator.</p></div>
+  </div>
+
+</div>
