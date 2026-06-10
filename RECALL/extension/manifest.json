@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Recall — Save and Act",
+  "version": "0.1.0",
+  "description": "Save links to Recall",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon48.png"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
